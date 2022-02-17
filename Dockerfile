@@ -48,9 +48,12 @@ WORKDIR /home/rstudio
 COPY user-settings /home/rstudio/.rstudio/monitored/user-settings/user-settings
 COPY .Rprofile /home/rstudio/
 
+RUN git 
+
 USER root
 # Expose the working port and execute command
 EXPOSE 8787
 
 # See --> https://community.rstudio.com/t/dockerfile-for-rstudio-server/10753
+# cannot run wiht the `rstudio-server start` command
 CMD ["/usr/lib/rstudio-server/bin/rserver", "--server-daemonize=0", "--server-app-armor-enabled=0"]
